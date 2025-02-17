@@ -99,6 +99,18 @@ const loginUser = async(req,res)=>{
     }
 }
 
+const getUser = async(req,res)=>{
+    try {
 
+        const users = await User.find()
 
-module.exports = {addUser,loginUser}
+        res.json({
+            data:users
+        })
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+module.exports = {addUser,loginUser,getUser}
