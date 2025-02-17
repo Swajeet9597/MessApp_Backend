@@ -10,11 +10,7 @@ const addUser = async(req,res)=>{
 
         const {userId,password,role} = req.body;
 
-        // console.log(password);
-
         const userExist = await User.findOne({username:userId})
-
-        // console.log(userExist);
 
         if(userExist){
             return res.status(401).json({
@@ -22,8 +18,6 @@ const addUser = async(req,res)=>{
                 msg:"User already exists..."
             })
         }
-
-        // console.log("nmnmnmnmnm");
 
         const enPass = await bcrypt.hash(password,12)
 
