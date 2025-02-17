@@ -18,6 +18,8 @@ app.use(express.json());
 app.use(express.text());
 
 app.use("/api/user/",router)
+
+
 app.listen(process.env.PORT,()=>{
     console.log(`Server is listening on port ${process.env.PORT}`);
 })

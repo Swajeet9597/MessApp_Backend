@@ -102,10 +102,10 @@ const loginUser = async(req,res)=>{
 const getUser = async(req,res)=>{
     try {
 
-        const users = await User.find()
+        // const users = await User.find()
 
-        res.json({
-            data:users
+        res.status(201).json({
+            data:" not found"
         })
         
     } catch (error) {
