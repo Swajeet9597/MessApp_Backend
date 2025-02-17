@@ -13,7 +13,7 @@ const addUser = async(req,res)=>{
         const userExist = await User.findOne({username:userId})
 
         if(userExist){
-            return res.status(401).json({
+            return res.status(201).json({
                 success:false,
                 msg:"User already exists..."
             })
