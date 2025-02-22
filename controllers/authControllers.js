@@ -89,7 +89,8 @@ const loginUser = async(req,res)=>{
             return res.cookie("token",token,tokenOption).status(200).json({
                 success:true,
                 msg:"User log in successfully...",
-                data:token
+                data:token,
+                role:userExist.role
             })
         }
 
