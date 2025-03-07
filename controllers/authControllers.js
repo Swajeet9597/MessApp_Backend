@@ -90,7 +90,8 @@ const loginUser = async(req,res)=>{
                 success:true,
                 msg:"User log in successfully...",
                 data:token,
-                role:userExist.role
+                role:userExist.role,
+                userId:userExist._id
             })
         }
 
