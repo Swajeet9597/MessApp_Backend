@@ -8,7 +8,7 @@ const addUser = async(req,res)=>{
         
         console.log(req.body);
 
-        const {userId,password,role} = req.body;
+        const {name,userId,password,role} = req.body;
 
         const userExist = await User.findOne({username:userId})
 
@@ -22,6 +22,7 @@ const addUser = async(req,res)=>{
         const enPass = await bcrypt.hash(password,12)
 
         const user = new User({
+            name:name,
             username:userId,
             password:enPass,
             role:role
