@@ -80,9 +80,15 @@ const loginUser = async(req,res)=>{
 
             const tokenOption = {
                 httpOnly:true,
-                sameSite:"lax",
-                secure: false
+                sameSite:"none",
+                secure: true
             }
+
+            // const tokenOption = {
+            //     httpOnly:true,
+            //     sameSite:"lax",
+            //     secure: false
+            // }
 
 
 
