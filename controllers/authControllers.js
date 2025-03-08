@@ -18,7 +18,9 @@ const addUser = async(req,res)=>{
         res.status(200).json({
             name:name,
             role:role,
-            userExist:userExist
+            userExist:userExist,
+            userId:userId,
+            password:password
         })
         
 
