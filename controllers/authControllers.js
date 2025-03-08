@@ -11,7 +11,7 @@ const addUser = async(req,res)=>{
         const {name,userId,password,role} = req.body;
 
         console.log("rolerole",role,userId,password);
-        console.log("namename",name);
+        console.log("namename",role,userId,password,name);
 
         const userExist = await User.findOne({username:userId})
 
