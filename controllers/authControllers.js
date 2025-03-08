@@ -10,6 +10,9 @@ const addUser = async(req,res)=>{
 
         const {name,userId,password,role} = req.body;
 
+        console.log("rolerole",role);
+        console.log("namename",name);
+
         const userExist = await User.findOne({username:userId})
 
         if(userExist){
