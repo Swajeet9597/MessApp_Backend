@@ -15,28 +15,35 @@ const addUser = async(req,res)=>{
 
         const userExist = await User.findOne({username:userId})
 
-        if(userExist){
-            return res.status(201).json({
-                success:false,
-                msg:"User already exists..."
-            })
-        }
-
-        const enPass = await bcrypt.hash(password,12)
-
-        const user = new User({
-            name:name,
-            username:userId,
-            password:enPass,
-            role:role
-        })
-
-        await user.save()
-
         res.status(200).json({
-            success:true,
-            msg:"User registered successfully..."
+            name:name,
+            role:role,
+            userExist:userExist
         })
+        
+
+        // if(userExist){
+        //     return res.status(201).json({
+        //         success:false,
+        //         msg:"User already exists..."
+        //     })
+        // }
+
+        // const enPass = await bcrypt.hash(password,12)
+
+        // const user = new User({
+        //     name:name,
+        //     username:userId,
+        //     password:enPass,
+        //     role:role
+        // })
+
+        // await user.save()
+
+        // res.status(200).json({
+        //     success:true,
+        //     msg:"User registered successfully..."
+        // })
 
 
     } catch (error) {
