@@ -15,7 +15,7 @@ const addUser = async(req,res)=>{
         if(name=="" || userId=="" || password=="" || role==""){
             return res.status(401).json({
                 success:false,
-                msg:"Pleaze fill all fields"
+                msg:"Please fill all fields"
             })
         }
 
