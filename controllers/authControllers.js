@@ -5,10 +5,19 @@ const jwt = require("jsonwebtoken")
 
 const addUser = async(req,res)=>{
     try {
+
+        
         
         console.log(req.body);
 
         const {name,userId,password,role} = req.body;
+
+        if(name=="" || userId=="" || password=="" || role==""){
+            return res.status(401).json({
+                success:false,
+                msg:"Pleaze fill all fields"
+            })
+        }
 
         const userExist = await User.findOne({username:userId})
 
