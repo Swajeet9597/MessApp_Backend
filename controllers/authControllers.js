@@ -122,4 +122,56 @@ const getUser = async(req,res)=>{
     }
 }
 
-module.exports = {addUser,loginUser,getUser}
+
+
+const messFormRendering = async(req,res)=>{
+    try {
+        
+        const data = req.data.id
+        console.log("messFormRendering",data);
+
+        const checkMessDetails = await MessDetail.findOne({userId:data})
+
+        if(checkMessDetails){
+
+            return res.status(401).json({
+                success:false,
+                msg:"Data already exists"
+            })
+            
+        }else{
+            res.status(200).json({
+                success:true,
+                msg:"You can access page"
+            })
+        }
+
+
+
+
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const logoutUser =async(req,res)=>{
+    try {
+        
+        res.clearCookie("token",{
+            httpOnly :true,
+            sameSite: "lax",
+            secure: false
+        })
+        res.status(200).json({
+            msg:"Logged out successfully",
+            success: true
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+module.exports = {addUser,loginUser,getUser,messFormRendering,logoutUser}
