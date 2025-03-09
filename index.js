@@ -3,6 +3,7 @@ const express = require("express")
 const app = express()
 const dbConnect = require("./DB/db");
 const router = require('./routes/authRoutes');
+const messDataRoutes = require('./routes/messFormRoutes')
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.text());
 
 app.use("/api/user/",router)
+app.use("/api/user/",messDataRoutes)
 
 
 app.listen(process.env.PORT,()=>{
