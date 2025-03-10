@@ -8,21 +8,32 @@ const saveMessData = async(req,res)=>{
     try {        
         const {menuDetails,priceDetails,timeDetails,messDetails} = req.body
 
-        const messData = new MessDetail(messDetails)
-        const menuData = new MenuDetail(menuDetails)
-        const priceData = new PriceDetail(priceDetails)
-        const timeData = new TimeDetail(timeDetails)
+        console.log(menuDetails);
+        console.log(priceDetails);
+        console.log(timeDetails);
+        console.log(messDetails);
 
-        await Promise.all([
-            messData.save(),
-            menuData.save(),
-            priceData.save(),
-            timeData.save()
-        ])
+        console.log(req.body);
+
+        // const messData = new MessDetail(messDetails)
+        // const menuData = new MenuDetail(menuDetails)
+        // const priceData = new PriceDetail(priceDetails)
+        // const timeData = new TimeDetail(timeDetails)
+
+        // await Promise.all([
+        //     messData.save(),
+        //     menuData.save(),
+        //     priceData.save(),
+        //     timeData.save()
+        // ])
 
         res.status(200).json({
             data:"data stored",
-            success: true
+            success: true,
+            menuDetails:menuDetails,
+            priceDetails:priceDetails,
+            timeDetails:timeDetails,
+            messDetails:messDetails
         })
 
     } catch (error) {
