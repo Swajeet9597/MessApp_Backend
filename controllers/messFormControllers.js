@@ -15,17 +15,17 @@ const saveMessData = async(req,res)=>{
 
         console.log(req.body);
 
-        // const messData = new MessDetail(messDetails)
-        // const menuData = new MenuDetail(menuDetails)
-        // const priceData = new PriceDetail(priceDetails)
-        // const timeData = new TimeDetail(timeDetails)
+        const messData = new MessDetail(messDetails)
+        const menuData = new MenuDetail(menuDetails)
+        const priceData = new PriceDetail(priceDetails)
+        const timeData = new TimeDetail(timeDetails)
 
-        // await Promise.all([
-        //     messData.save(),
-        //     menuData.save(),
-        //     priceData.save(),
-        //     timeData.save()
-        // ])
+        await Promise.all([
+            messData.save(),
+            menuData.save(),
+            priceData.save(),
+            timeData.save()
+        ])
 
         res.status(200).json({
             data:"data stored",
