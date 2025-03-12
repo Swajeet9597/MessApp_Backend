@@ -154,7 +154,7 @@ const messFormRendering = async(req,res)=>{
         }else{
             res.status(200).json({
                 success:true,
-                msg:"You can access page"
+                msg:"Data is not exists"
             })
         }
 
