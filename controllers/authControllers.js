@@ -89,17 +89,17 @@ const loginUser = async(req,res)=>{
 
             const token = await jwt.sign(payLoad,process.env.Token_key,{expiresIn:60*60*5})
 
-            const tokenOption = {
-                httpOnly:true,
-                sameSite:"none",
-                secure: true
-            }
-
             // const tokenOption = {
             //     httpOnly:true,
-            //     sameSite:"lax",
-            //     secure: false
+            //     sameSite:"none",
+            //     secure: true
             // }
+
+            const tokenOption = {
+                httpOnly:true,
+                sameSite:"lax",
+                secure: false
+            }
 
 
 
