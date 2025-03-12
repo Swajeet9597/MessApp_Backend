@@ -28,6 +28,47 @@
 
 // dbConnect()
 
+// require('dotenv').config();
+// const express = require("express");
+// const app = express();
+// const dbConnect = require("./DB/db");
+// const router = require('./routes/authRoutes');
+// const messDataRoutes = require('./routes/messFormRoutes');
+// const cors = require("cors");
+// const cookieParser = require("cookie-parser");
+
+// // ✅ Correct CORS Configuration
+// const corsOptions = {
+//     origin: ["http://localhost:4200", "https://findfood-ashen.vercel.app"], // Allow both local and deployed frontend
+//     methods: "POST,GET,PATCH,DELETE,OPTIONS,HEAD",
+//     credentials: true, // Allow cookies & authentication headers
+//     allowedHeaders: ["Content-Type", "Authorization"], // Explicitly allow headers
+// };
+
+// // Apply CORS Middleware Correctly
+// app.use(cors(corsOptions));
+// app.options("*", cors(corsOptions)); // Handle preflight requests
+
+
+// app.use(cookieParser());
+// app.use(express.json());
+// app.use(express.text());
+
+// // ✅ Apply Routes AFTER Middleware
+// app.use("/api/user/", router);
+// app.use("/api/user/", messDataRoutes);
+
+// // ✅ Start Server
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//     console.log(`Server is listening on port ${PORT}`);
+// });
+
+// // ✅ Connect to Database
+// dbConnect();
+
+
+
 require('dotenv').config();
 const express = require("express");
 const app = express();
@@ -37,18 +78,24 @@ const messDataRoutes = require('./routes/messFormRoutes');
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-// ✅ Correct CORS Configuration
+const allowedOrigins = ["http://localhost:4200", "https://findfood-ashen.vercel.app"];
+
 const corsOptions = {
-    origin: ["http://localhost:4200", "https://findfood-ashen.vercel.app"], // Allow both local and deployed frontend
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, origin);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: "POST,GET,PATCH,DELETE,OPTIONS,HEAD",
     credentials: true, // Allow cookies & authentication headers
-    allowedHeaders: ["Content-Type", "Authorization"], // Explicitly allow headers
+    allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-// Apply CORS Middleware Correctly
+// ✅ Apply CORS Middleware
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // Handle preflight requests
-
 
 app.use(cookieParser());
 app.use(express.json());
