@@ -37,28 +37,30 @@ const messDataRoutes = require('./routes/messFormRoutes');
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
+// ✅ Correct CORS Configuration
 const corsOptions = {
-    origin: "http://localhost:4200", // Explicitly allow frontend origin
+    origin: "http://localhost:4200", // Frontend URL
     methods: "POST,GET,PATCH,DELETE,OPTIONS,HEAD",
-    credentials: true // Allow cookies and authentication
+    credentials: true // Allow cookies & authentication headers
 };
 
-// Apply CORS middleware before defining routes
-app.use("http://localhost:4200",cors(corsOptions));
-app.options("http://localhost:4200", cors(corsOptions)); // Handle preflight requests
+// ✅ Apply CORS Middleware Correctly
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight requests
 
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.text());
 
-// Define routes after middleware
+// ✅ Apply Routes AFTER Middleware
 app.use("/api/user/", router);
 app.use("/api/user/", messDataRoutes);
 
+// ✅ Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
 
-// Connect to database
+// ✅ Connect to Database
 dbConnect();
