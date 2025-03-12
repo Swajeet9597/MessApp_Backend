@@ -1,32 +1,32 @@
-// require('dotenv').config();
-// const express = require("express")
-// const app = express()
-// const dbConnect = require("./DB/db");
-// const router = require('./routes/authRoutes');
-// const messDataRoutes = require('./routes/messFormRoutes')
-// const cors = require("cors")
-// const cookieParser = require("cookie-parser")
+require('dotenv').config();
+const express = require("express")
+const app = express()
+const dbConnect = require("./DB/db");
+const router = require('./routes/authRoutes');
+const messDataRoutes = require('./routes/messFormRoutes')
+const cors = require("cors")
+const cookieParser = require("cookie-parser")
 
-// const corsOption = {
-//     origin: "http://localhost:4200",
-//     methods:"POST,GET,PATCH,DELETE,HEAD",
-//     credentials: true,
-// }
+const corsOption = {
+    origin: "http://localhost:4200",
+    methods:"POST,GET,PATCH,DELETE,HEAD",
+    credentials: true,
+}
 
-// app.use("*",cors(corsOption));
-// app.use(cookieParser());
-// app.use(express.json());
-// app.use(express.text());
+app.use(cors(corsOption));
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.text());
 
-// app.use("/api/user/",router)
-// app.use("/api/user/",messDataRoutes)
+app.use("/api/user/",router)
+app.use("/api/user/",messDataRoutes)
 
 
-// app.listen(process.env.PORT,()=>{
-//     console.log(`Server is listening on port ${process.env.PORT}`);
-// })
+app.listen(process.env.PORT,()=>{
+    console.log(`Server is listening on port ${process.env.PORT}`);
+})
 
-// dbConnect()
+dbConnect()
 
 // require('dotenv').config();
 // const express = require("express");
@@ -69,47 +69,51 @@
 
 
 
-require('dotenv').config();
-const express = require("express");
-const app = express();
-const dbConnect = require("./DB/db");
-const router = require('./routes/authRoutes');
-const messDataRoutes = require('./routes/messFormRoutes');
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
 
-const allowedOrigins = ["http://localhost:4200", "https://findfood-ashen.vercel.app"];
 
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, origin);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
-    methods: "POST,GET,PATCH,DELETE,OPTIONS,HEAD",
-    credentials: true, // Allow cookies & authentication headers
-    allowedHeaders: ["Content-Type", "Authorization"],
-};
 
-// ✅ Apply CORS Middleware
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Handle preflight requests
 
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.text());
+// require('dotenv').config();
+// const express = require("express");
+// const app = express();
+// const dbConnect = require("./DB/db");
+// const router = require('./routes/authRoutes');
+// const messDataRoutes = require('./routes/messFormRoutes');
+// const cors = require("cors");
+// const cookieParser = require("cookie-parser");
 
-// ✅ Apply Routes AFTER Middleware
-app.use("/api/user/", router);
-app.use("/api/user/", messDataRoutes);
+// const allowedOrigins = ["http://localhost:4200", "https://findfood-ashen.vercel.app"];
 
-// ✅ Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
-});
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         if (!origin || allowedOrigins.includes(origin)) {
+//             callback(null, origin);
+//         } else {
+//             callback(new Error("Not allowed by CORS"));
+//         }
+//     },
+//     methods: "POST,GET,PATCH,DELETE,OPTIONS,HEAD",
+//     credentials: true, // Allow cookies & authentication headers
+//     allowedHeaders: ["Content-Type", "Authorization"],
+// };
 
-// ✅ Connect to Database
-dbConnect();
+// // ✅ Apply CORS Middleware
+// app.use(cors(corsOptions));
+// app.options("*", cors(corsOptions)); // Handle preflight requests
+
+// app.use(cookieParser());
+// app.use(express.json());
+// app.use(express.text());
+
+// // ✅ Apply Routes AFTER Middleware
+// app.use("/api/user/", router);
+// app.use("/api/user/", messDataRoutes);
+
+// // ✅ Start Server
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//     console.log(`Server is listening on port ${PORT}`);
+// });
+
+// // ✅ Connect to Database
+// dbConnect();
