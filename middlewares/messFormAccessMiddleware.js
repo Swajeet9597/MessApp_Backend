@@ -8,35 +8,30 @@ const messFormAccessMiddleware = async(req,res,next)=>{
 
         console.log("token",token);
 
-        return res.status(400).json({
-                    success:false,
-                    msg:"User is not log in..",
-                    token: token,
-                    data:"sdfsdfsd"
+       
+
+        if(!token){
+            return res.status(400).json({
+                success:false,
+                msg:"User is not log in.."
+            })
+        }
+
+        jwt.verify(token,process.env.Token_key,(err,decode)=>{
+            if(err){
+                console.log(err)
+                return res.status(400).json({
+                    success: false,
+                    msg: "Invalid token"
                 })
+            }
+            req.data = decode
 
-        // if(!token){
-        //     return res.status(400).json({
-        //         success:false,
-        //         msg:"User is not log in.."
-        //     })
-        // }
+            // console.log(decode);
 
-        // jwt.verify(token,process.env.Token_key,(err,decode)=>{
-        //     if(err){
-        //         console.log(err)
-        //         return res.status(400).json({
-        //             success: false,
-        //             msg: "Invalid token"
-        //         })
-        //     }
-        //     req.data = decode
+        })
 
-        //     // console.log(decode);
-
-        // })
-
-        // next()
+        next()
 
     } catch (error) {
         console.log(error);
