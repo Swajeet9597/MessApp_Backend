@@ -44,7 +44,7 @@ const corsOptions = {
 };
 
 // Apply CORS middleware before defining routes
-app.use(cors(corsOptions));
+app.use("http://localhost:4200",cors(corsOptions));
 app.options("http://localhost:4200", cors(corsOptions)); // Handle preflight requests
 
 app.use(cookieParser());
