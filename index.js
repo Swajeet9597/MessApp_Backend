@@ -45,7 +45,7 @@ const corsOptions = {
 
 // Apply CORS middleware before defining routes
 app.use(cors(corsOptions));
-app.options(cors(corsOptions)); // Handle preflight requests
+app.options("http://localhost:4200", cors(corsOptions)); // Handle preflight requests
 
 app.use(cookieParser());
 app.use(express.json());
