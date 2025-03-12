@@ -39,14 +39,16 @@ const cookieParser = require("cookie-parser");
 
 // ✅ Correct CORS Configuration
 const corsOptions = {
-    origin: "http://localhost:4200", // Frontend URL
+    origin: ["http://localhost:4200", "https://findfood-ashen.vercel.app"], // Allow both local and deployed frontend
     methods: "POST,GET,PATCH,DELETE,OPTIONS,HEAD",
-    credentials: true // Allow cookies & authentication headers
+    credentials: true, // Allow cookies & authentication headers
+    allowedHeaders: ["Content-Type", "Authorization"], // Explicitly allow headers
 };
 
-// ✅ Apply CORS Middleware Correctly
+// Apply CORS Middleware Correctly
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // Handle preflight requests
+
 
 app.use(cookieParser());
 app.use(express.json());
