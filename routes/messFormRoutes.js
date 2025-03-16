@@ -15,7 +15,7 @@ router.get("/timeDetailsData",getMessDataMiddleware,timeDetailsData)
 
 router.patch("/saveMessDetails",saveMessDetails)
 router.patch("/saveMenuDetails",saveMenuDetails)
-router.patch("/savePriceDetails",savePriceDetails)
+router.patch("/savePriceDetails",savePriceDetails)  
 router.patch("/saveTimeDetails",saveTimeDetails)
 
 
