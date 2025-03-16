@@ -36,7 +36,7 @@ router.post("/twilio",async(req,res)=>{
         //     to: mobile
         // });
 
-        res.status(200).json({ success: true, message: "SMS sent!", sid: message.sid });
+        res.status(200).json({ success: true, message: "SMS sent!" });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
@@ -46,4 +46,4 @@ router.get("/getUser",getUser)
 router.get("/messFormRendering",messFormAccessMiddleware,messFormRendering)
 router.post("/logout",logoutUser)
 
-module.exports = router;
+module.exports = router;    
