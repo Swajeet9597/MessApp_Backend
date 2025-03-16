@@ -13,10 +13,10 @@ router.get("/priceDetailsData",getMessDataMiddleware,priceDetailsData)
 router.get("/timeDetailsData",getMessDataMiddleware,timeDetailsData)
 
 
-router.post("/saveMessDetails",saveMessDetails)
-router.post("/saveMenuDetails",saveMenuDetails)
-router.post("/savePriceDetails",savePriceDetails)
-router.post("/saveTimeDetails",saveTimeDetails)
+router.patch("/saveMessDetails",saveMessDetails)
+router.patch("/saveMenuDetails",saveMenuDetails)
+router.patch("/savePriceDetails",savePriceDetails)
+router.patch("/saveTimeDetails",saveTimeDetails)
 
 
 router.delete("/deleteImage",getMessDataMiddleware, deleteImage)
