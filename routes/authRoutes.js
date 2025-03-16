@@ -30,11 +30,11 @@ router.post("/twilio",async(req,res)=>{
 
         console.log("check route",mobile,text);
         console.log("check route",req.body);
-        // const message = await client.messages.create({
-        //     body: text,
-        //     from: process.env.TWILIO_PHONE_NUMBER,
-        //     to: mobile
-        // });
+        const message = await client.messages.create({
+            body: text,
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: mobile
+        });
 
         res.status(200).json({ success: true, message: "SMS sent!" });
     } catch (error) {
