@@ -4,13 +4,13 @@ const { addUser, loginUser,getUser, logoutUser, messFormRendering } = require(".
 const messFormAccessMiddleware = require("../middlewares/messFormAccessMiddleware")
 const authMiddleware = require("../middlewares/authMiddleware")
 
-const twilio = require("twilio");
+// const twilio = require("twilio");
 const router = express.Router()
 
-const client = twilio(
-    process.env.TWILIO_ACCOUNT_SID, 
-    process.env.TWILIO_AUTH_TOKEN
-);
+// const client = twilio(
+//     process.env.TWILIO_ACCOUNT_SID, 
+//     process.env.TWILIO_AUTH_TOKEN
+// );
 
 
 
@@ -23,26 +23,26 @@ router.get("/auth",authMiddleware,(req,res)=>{
     // })
 })
 
-router.post("/twilio",async(req,res)=>{
-    const { mobile, text } = req.body;
+// router.post("/twilio",async(req,res)=>{
+//     const { mobile, text } = req.body;
 
-    try {
+//     try {
 
-        console.log("check route",mobile,text);
-        console.log("check route",req.body);
+//         console.log("check route",mobile,text);
+//         console.log("check route",req.body);
 
-        const message = await client.messages.create({
-            body: text,
-            from: process.env.TWILIO_PHONE_NUMBER,
-            to: mobile
-        });
+//         const message = await client.messages.create({
+//             body: text,
+//             from: process.env.TWILIO_PHONE_NUMBER,
+//             to: mobile
+//         });
 
 
-        res.status(200).json({ success: true, message: "SMS sent!" });
-    } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
-    }
-})
+//         res.status(200).json({ success: true, message: "SMS sent!" });
+//     } catch (error) {
+//         res.status(500).json({ success: false, error: error.message });
+//     }
+// })
 
 router.get("/getUser",getUser)
 router.get("/messFormRendering",messFormAccessMiddleware,messFormRendering)
