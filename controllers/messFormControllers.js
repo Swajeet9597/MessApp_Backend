@@ -235,6 +235,7 @@ const saveMenuDetails = async(req,res)=>{
 
         const {userId} =req.body
         console.log("save data",req.body);
+        console.log("userId data",userId);
 
         const menuData = await MenuDetail.findOneAndUpdate(
 
