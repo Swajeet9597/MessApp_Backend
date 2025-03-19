@@ -4,6 +4,7 @@ const app = express()
 const dbConnect = require("./DB/db");
 const router = require('./routes/authRoutes');
 const messDataRoutes = require('./routes/messFormRoutes')
+const customerRoute = require("./routes/customerRoutes")
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
 
@@ -20,7 +21,7 @@ app.use(express.text());
 
 app.use("/api/user/",router)
 app.use("/api/user/",messDataRoutes)
-
+app.use("/api/user/",customerRoute)
 
 app.listen(process.env.PORT,()=>{
     console.log(`Server is listening on port ${process.env.PORT}`);
