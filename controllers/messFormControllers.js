@@ -153,7 +153,7 @@ const saveMessDetails = async(req,res)=>{
     try {
 
         const {userId} =req.body
-        // console.log("save data",messDetails);
+        console.log("save data",userId,req.body);
         const messData = await MessDetail.findOneAndUpdate(
 
             {userId},
