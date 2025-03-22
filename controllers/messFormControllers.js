@@ -154,6 +154,13 @@ const saveMessDetails = async(req,res)=>{
 
         const {userId} =req.body
         console.log("save data",userId,req.body);
+
+        if(!userId){
+            return res.status(400).json({
+                success:false,
+                msg:"Data is not saved..."
+            })
+        }
         const messData = await MessDetail.findOneAndUpdate(
 
             {userId},
