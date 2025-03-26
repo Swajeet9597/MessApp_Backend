@@ -36,7 +36,7 @@ const getAllMess = async(req,res)=>{
 const saveRating = async(req,res)=>{
     try {
         console.log("df",req.body);
-        if()
+        // if()
         const saveFeedback = new Rating(req.body)
 
         await saveFeedback.save()
