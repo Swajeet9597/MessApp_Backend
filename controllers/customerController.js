@@ -1,3 +1,4 @@
+const { response } = require("express");
 const MenuDetail = require("../models/menuDetails");
 const MessDetail = require("../models/messDetails");
 const PriceDetail = require("../models/priceDetails");
@@ -36,7 +37,12 @@ const getAllMess = async(req,res)=>{
 const saveRating = async(req,res)=>{
     try {
         console.log("df",req.body);
-        // if()
+        if(!req.body.customerUserId || !req.body.messUserId){
+            return res.status(404).json({
+                data:"Not receiving data in backend",
+                success:false
+            })
+        }
         const saveFeedback = new Rating(req.body)
 
         await saveFeedback.save()
